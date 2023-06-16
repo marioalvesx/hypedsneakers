@@ -100,7 +100,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       if (productIndex >= 0) {
         updatedCart.splice(productIndex, 1);
         setCart(updatedCart);
-        localStorage.setItem("@RocketShoes:cart", JSON.stringify(updatedCart));
+        localStorage.setItem("@HypedSnkrs:cart", JSON.stringify(updatedCart));
       } else {
         throw Error();
       }
