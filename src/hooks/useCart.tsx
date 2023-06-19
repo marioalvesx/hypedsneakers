@@ -8,7 +8,7 @@ import {
 } from "react";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
-// import { Product, Stock } from "../types";
+import { Product, Stock } from "../types";
 
 interface CartProviderProps {
   children: ReactNode;
@@ -50,7 +50,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
   useEffect(() => {
     if (cartPreviousValue !== cart) {
-      localStorage.setItem("@RocketShoes:cart", JSON.stringify(cart));
+      localStorage.setItem("@HypedSnkrs:cart", JSON.stringify(cart));
     }
   }, [cart, cartPreviousValue]);
 
@@ -133,7 +133,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       if (productExists) {
         productExists.amount = amount;
         setCart(updatedCart);
-        localStorage.setItem("@RocketShoes:cart", JSON.stringify(updatedCart));
+        localStorage.setItem("@HypedSnkrs:cart", JSON.stringify(updatedCart));
       } else {
         throw Error();
       }
