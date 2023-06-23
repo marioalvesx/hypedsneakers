@@ -1,15 +1,15 @@
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 
-const Routes = (): JSX.Element => {
+const Router = (): JSX.Element => {
   return (
-    <Switch>
-      <Route path="/" exact component={Home} />
-      {/* <Route path="/cart" component={Cart} /> */}
-    </Switch>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/cart" element={<Cart />} />
+    </Routes>
   );
 };
 
-export default Routes;
+export default Router;
