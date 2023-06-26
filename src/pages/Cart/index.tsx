@@ -6,7 +6,7 @@ import {
 } from "react-icons/md";
 import { Container, ProductTable, Total } from "./styles";
 import { useCart } from "../../hooks/useCart";
-// import { formatPrice } from "../../util/format";
+import { formatPrice } from "../../util/format";
 
 interface Product {
   id: number;

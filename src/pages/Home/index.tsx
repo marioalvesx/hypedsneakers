@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { MdAddShoppingCart } from "react-icons/md";
 
 import { ProductList } from "./styles";
-// import { api } from "../../services/api";
-// import { formatPrice } from "../../../util/format";
+import { api } from "../../services/api";
+import { formatPrice } from "../../util/format";
 import { useCart } from "../../hooks/useCart";
 
 interface Product {
@@ -33,15 +33,15 @@ const Home = (): JSX.Element => {
   }, {} as CartItemsAmount);
 
   useEffect(() => {
-    // async function loadProducts() {
-    //   const response = await api.get<Product[]>("products");
-    //   const data = response.data.map((product) => ({
-    //     ...product,
-    //     priceFormatted: product.price,
-    //   }));
-    //   // setProducts(data);
-    // }
-    // loadProducts();
+    async function loadProducts() {
+      const response = await api.get<Product[]>("products");
+      const data = response.data.map((product) => ({
+        ...product,
+        priceFormatted: formatPrice(product.price),
+      }));
+      setProducts(data);
+    }
+    loadProducts();
   }, []);
 
   function handleAddProduct(id: number) {

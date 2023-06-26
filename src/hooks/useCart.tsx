@@ -30,7 +30,7 @@ const CartContext = createContext<CartContextData>({} as CartContextData);
 
 export function CartProvider({ children }: CartProviderProps): JSX.Element {
   const [cart, setCart] = useState<Product[]>(() => {
-    const storedCart = localStorage.getItem("@RocketShoes:cart");
+    const storedCart = localStorage.getItem("@HypedSneakers:cart");
 
     if (storedCart) {
       return JSON.parse(storedCart);
@@ -50,11 +50,12 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
   useEffect(() => {
     if (cartPreviousValue !== cart) {
-      localStorage.setItem("@HypedSnkrs:cart", JSON.stringify(cart));
+      localStorage.setItem("@HypedSneakers:cart", JSON.stringify(cart));
     }
   }, [cart, cartPreviousValue]);
 
   const addProduct = async (productId: number) => {
+    console.log(productId);
     try {
       const updatedCart = [...cart];
       const productExists = updatedCart.find(
@@ -66,6 +67,8 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       const stockAmount = stock.data.amount;
       const currentAmount = productExists ? productExists.amount : 0;
       const amount = currentAmount + 1;
+
+      console.log("inside try");
 
       if (amount > stockAmount) {
         toast.error("Quantidade solicitada fora de estoque");
@@ -87,6 +90,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       setCart(updatedCart);
     } catch {
       toast.error("Erro na adição do produto");
+      console.log("aqui");
     }
   };
 
@@ -100,7 +104,10 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       if (productIndex >= 0) {
         updatedCart.splice(productIndex, 1);
         setCart(updatedCart);
-        localStorage.setItem("@HypedSnkrs:cart", JSON.stringify(updatedCart));
+        localStorage.setItem(
+          "@HypedSneakers:cart",
+          JSON.stringify(updatedCart)
+        );
       } else {
         throw Error();
       }
@@ -133,7 +140,10 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       if (productExists) {
         productExists.amount = amount;
         setCart(updatedCart);
-        localStorage.setItem("@HypedSnkrs:cart", JSON.stringify(updatedCart));
+        localStorage.setItem(
+          "@HypedSneakers:cart",
+          JSON.stringify(updatedCart)
+        );
       } else {
         throw Error();
       }
