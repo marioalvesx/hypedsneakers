@@ -1,14 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./App";
-import { createServer } from "miragejs";
+import { Model, createServer } from "miragejs";
 
 createServer({
-  routes() {
-    this.namespace = "api";
+  models: {
+    product: Model,
+    stock: Model,
+  },
 
-    this.get("/stock", () => {
-      return [
+  seeds(server) {
+    server.db.loadData({
+      stock: [
         {
           id: 1,
           amount: 3,
@@ -33,11 +36,8 @@ createServer({
           id: 6,
           amount: 10,
         },
-      ];
-    });
-
-    this.get("/products", () => {
-      return [
+      ],
+      products: [
         {
           id: 1,
           title: "Tênis de Caminhada Leve Confortável",
@@ -80,7 +80,25 @@ createServer({
           image:
             "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg",
         },
-      ];
+      ],
+    });
+  },
+
+  routes() {
+    this.namespace = "api";
+
+    this.get("/products", () => {
+      return this.schema.all("product");
+    });
+
+    this.get("/stock", () => {
+      return this.schema.all("stock");
+    });
+
+    this.post("/products", (schema, request) => {
+      const data = JSON.parse(request.requestBody);
+
+      return schema.create("product", data);
     });
   },
 });
