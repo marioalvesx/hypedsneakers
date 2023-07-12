@@ -36,7 +36,7 @@ const Home = (): JSX.Element => {
     async function loadProducts() {
       const response = await api.get<Product[]>("products");
       console.log(response);
-      const data = response.data.products.map((product) => ({
+      const data = response.data.map((product) => ({
         ...product,
         priceFormatted: formatPrice(product.price),
       }));
