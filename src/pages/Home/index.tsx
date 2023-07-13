@@ -11,6 +11,7 @@ interface Product {
   title: string;
   price: number;
   image: string;
+  products: Product[];
 }
 
 interface ProductFormatted extends Product {
@@ -34,13 +35,16 @@ const Home = (): JSX.Element => {
 
   useEffect(() => {
     async function loadProducts() {
-      const response = await api.get<Product[]>("products");
-      console.log(response);
-      const data = response.data.map((product) => ({
+      const { data } = await api.get<Product>("products");
+      console.log(data);
+      // const { data } = response;
+
+      const productList = data.products.map((product) => ({
         ...product,
         priceFormatted: formatPrice(product.price),
       }));
-      setProducts(data);
+      console.log(productList);
+      setProducts(productList);
     }
     loadProducts();
   }, []);
