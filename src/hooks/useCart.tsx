@@ -29,6 +29,7 @@ interface CartContextData {
 const CartContext = createContext<CartContextData>({} as CartContextData);
 
 export function CartProvider({ children }: CartProviderProps): JSX.Element {
+  const [stock, setStock] = useState(null);
   const [cart, setCart] = useState<Product[]>(() => {
     const storedCart = localStorage.getItem("@HypedSneakers:cart");
 
@@ -54,21 +55,41 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     }
   }, [cart, cartPreviousValue]);
 
+  // useEffect(() => {
+  //   getStockById(1); // Busca o estoque com ID 1 ao inicializar o componente
+  // }, []);
+
+  async function getStockById(id: number) {
+    try {
+      const response = await fetch(`http://localhost:3000/api/stock/${id}`);
+      console.log(response);
+      const data = await response.json();
+      console.log(data);
+      setStock(data);
+    } catch (error) {
+      console.log(error);
+    }
+    if (!stock) {
+      console.log(stock);
+    }
+  }
+
   const addProduct = async (productId: number) => {
     console.log(productId);
+    getStockById(1);
     try {
       const updatedCart = [...cart];
       const productExists = updatedCart.find(
         (product) => product.id === productId
       );
 
+      console.log("inside try");
       const stock = await api.get(`/stock/${productId}`);
-
+      // const stock = await api.get("/stock");
+      console.log(stock);
       const stockAmount = stock.data.amount;
       const currentAmount = productExists ? productExists.amount : 0;
       const amount = currentAmount + 1;
-
-      console.log("inside try");
 
       if (amount > stockAmount) {
         toast.error("Quantidade solicitada fora de estoque");
@@ -153,11 +174,13 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
   };
 
   return (
-    <CartContext.Provider
-      value={{ cart, addProduct, removeProduct, updateProductAmount }}
-    >
-      {children}
-    </CartContext.Provider>
+    <>
+      <CartContext.Provider
+        value={{ cart, addProduct, removeProduct, updateProductAmount }}
+      >
+        {children}
+      </CartContext.Provider>
+    </>
   );
 }
 

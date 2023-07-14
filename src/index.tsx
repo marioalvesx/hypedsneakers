@@ -95,6 +95,11 @@ createServer({
       return this.schema.all("stock");
     });
 
+    this.get("/stock/:id", (schema, request) => {
+      const id = request.params.id;
+      return schema.find("stock", id);
+    });
+
     this.post("/products", (schema, request) => {
       const data = JSON.parse(request.requestBody);
 
