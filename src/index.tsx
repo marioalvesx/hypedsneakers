@@ -11,7 +11,7 @@ createServer({
 
   seeds(server) {
     server.db.loadData({
-      stock: [
+      stocks: [
         {
           id: 1,
           amount: 3,
@@ -91,11 +91,16 @@ createServer({
       return this.schema.all("product");
     });
 
-    this.get("/stock", () => {
+    this.get("/products/:id", (schema, request) => {
+      const id = request.params.id;
+      return schema.find("product", id);
+    });
+
+    this.get("/stocks", () => {
       return this.schema.all("stock");
     });
 
-    this.get("/stock/:id", (schema, request) => {
+    this.get("/stocks/:id", (schema, request) => {
       const id = request.params.id;
       return schema.find("stock", id);
     });
