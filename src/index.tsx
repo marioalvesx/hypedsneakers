@@ -40,45 +40,39 @@ createServer({
       products: [
         {
           id: 1,
-          title: "Tênis de Caminhada Leve Confortável",
+          title: "Yeezy 700 V1 Salt",
           price: 179.9,
-          image:
-            "https://i.ibb.co/YDgmtz4/Whats-App-Image-2023-07-16-at-23-19-59-7.jpg",
+          image: "https://i.ibb.co/Z1ZvFGL/26202317103280.webp",
         },
         {
           id: 2,
-          title: "Tênis VR Caminhada Confortável Detalhes Couro Masculino",
+          title: "Yeezy Boost 700 v1 Hi-Res Blue",
           price: 139.9,
-          image:
-            "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg",
+          image: "https://i.ibb.co/D4sk3pw/2682022195637822.webp",
         },
         {
           id: 3,
-          title: "Tênis Adidas Duramo Lite 2.0",
+          title: "Yeezy 450 Stone Flax",
           price: 219.9,
-          image:
-            "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg",
+          image: "https://i.ibb.co/Q9WML84/20102022203611178.webp",
         },
         {
           id: 5,
-          title: "Tênis VR Caminhada Confortável Detalhes Couro Masculino",
+          title: "Yeezy 500 Utility Black",
           price: 139.9,
-          image:
-            "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg",
+          image: "https://i.ibb.co/bj0MyfY/262023171334899.webp",
         },
         {
           id: 6,
-          title: "Tênis Adidas Duramo Lite 2.0",
+          title: "Yeezy Boost 350 V2 Onyx",
           price: 219.9,
-          image:
-            "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg",
+          image: "https://i.ibb.co/GMWKJtw/2712023175528369.webp",
         },
         {
           id: 4,
-          title: "Tênis de Caminhada Leve Confortável",
+          title: "Yeezy 350 V2 Salt",
           price: 179.9,
-          image:
-            "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg",
+          image: "https://i.ibb.co/KyKtndd/20102022203439316.webp",
         },
       ],
     });
