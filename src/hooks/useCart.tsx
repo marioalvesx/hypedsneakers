@@ -7,6 +7,7 @@ import {
   useEffect,
 } from "react";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { api } from "../services/api";
 import { Product, Stock } from "../types";
 
@@ -29,14 +30,12 @@ interface CartContextData {
 const CartContext = createContext<CartContextData>({} as CartContextData);
 
 export function CartProvider({ children }: CartProviderProps): JSX.Element {
-  const [stock, setStock] = useState(null);
   const [cart, setCart] = useState<Product[]>(() => {
     const storedCart = localStorage.getItem("@HypedSneakers:cart");
 
     if (storedCart) {
       return JSON.parse(storedCart);
     }
-
     return [];
   });
 
@@ -55,21 +54,6 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     }
   }, [cart, cartPreviousValue]);
 
-  // async function getStockList() {
-  //   try {
-  //     const response = await fetch(`http://localhost:3000/api/stocks`);
-  //     console.log(response);
-  //     const data = await response.json();
-  //     console.log(data);
-  //     setStock(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  //   if (!stock) {
-  //     console.log(stock);
-  //   }
-  // }
-
   const addProduct = async (productId: number) => {
     try {
       const updatedCart = [...cart];
@@ -78,26 +62,22 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       );
 
       const stock = await api.get(`/stocks/${productId}`);
-      console.log(stock);
       const stockAmount = stock.data.stock.amount;
-      console.log(stockAmount);
       const currentAmount = productExists ? productExists.amount : 0;
-      console.log(currentAmount);
       const amount = currentAmount + 1;
-      console.log(amount);
 
       if (amount > stockAmount) {
-        console.log("aqui");
+        toast.error("Quantidade solicitada fora de estoque", {
+          position: toast.POSITION.TOP_LEFT,
+        });
+        console.log("Erro");
 
-        toast.error("Quantidade solicitada fora de estoque");
         return;
       }
 
       if (productExists) {
         productExists.amount = amount;
-        console.log(productExists);
       } else {
-        console.log("aqui");
         const product = await api.get(`/products/${productId}`);
         console.log(product);
         const newProduct = {
@@ -108,10 +88,9 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       }
 
       setCart(updatedCart);
-      console.log(updatedCart);
     } catch {
       toast.error("Erro na adição do produto");
-      console.log("aqui");
+      console.log("erro");
     }
   };
 

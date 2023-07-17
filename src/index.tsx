@@ -43,7 +43,7 @@ createServer({
           title: "Tênis de Caminhada Leve Confortável",
           price: 179.9,
           image:
-            "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg",
+            "https://i.ibb.co/YDgmtz4/Whats-App-Image-2023-07-16-at-23-19-59-7.jpg",
         },
         {
           id: 2,
@@ -116,6 +116,7 @@ createServer({
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
     <App />
