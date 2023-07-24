@@ -18,12 +18,14 @@ const Header = (): JSX.Element => {
 
       <Cart to="/cart">
         <div>
-          <strong>Meu carrinho</strong>
+          <p>
+            <strong>Meu carrinho</strong>
+          </p>
           <span data-testid="cart-size">
             {cartSize === 1 ? `${cartSize} item` : `${cartSize} itens`}
           </span>
         </div>
-        <MdShoppingBasket size={36} color="#FFF" />
+        <MdShoppingBasket size={36} color="#fff" />
       </Cart>
     </Container>
   );

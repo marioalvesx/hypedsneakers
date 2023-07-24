@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.header`
   display: flex;
@@ -32,7 +32,7 @@ export const Cart = styled(Link)`
 
     span {
       font-size: 12px;
-      color: #999;
+      color: #fff;
     }
   }
 `;
