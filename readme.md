@@ -1,7 +1,7 @@
 <p align="center">
 <img src="./public/assets/banner.png" style="max-width: 100%;"/> 
 </p>
-<h1 align="center"> HypedSneakers </h1>
+<h1 align="center"> 👟 HypedSneakers </h1>
 <h3 align="center"> A shopping cart app using mainly React and TypeScript. </h3>
 <p>
 
@@ -34,5 +34,7 @@ Each product has a different stock, so if the user pass that number an error mes
 - <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">LocalStorageAPI</a>
 
 ## 🚀 Project on execution
+
+By accessing this link you can test the project, here you can: Add a product, add quantity to each product, see the item quantity of each different product change in your cart and remove a product from the cart.
 
 -
