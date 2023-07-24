@@ -37,4 +37,4 @@ Each product has a different stock, so if the user pass that number an error mes
 
 By accessing this link you can test the project, here you can: Add a product, add quantity to each product, see the item quantity of each different product change in your cart and remove a product from the cart.
 
--
+- https://hypedsneakersbr.netlify.app/
